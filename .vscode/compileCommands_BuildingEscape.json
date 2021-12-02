@@ -1,0 +1,27 @@
+[
+    {
+        "file": "D:\\\\learning projects\\\\unreal\\\\udemy\\\\unreal engine developer c++\\\\BuildingEscape\\\\Source\\\\BuildingEscape\\\\BuildingEscape.Build.cs",
+        "command": "cl.exe @\"D:\\learning projects\\unreal\\udemy\\unreal engine developer c++\\BuildingEscape\\.vscode\\compileCommands_BuildingEscape\\BuildingEscape.210.rsp\"",
+        "directory": "C:\\Program Files\\Epic Games\\UE_4.27\\Engine\\Source"
+    },
+    {
+        "file": "D:\\\\learning projects\\\\unreal\\\\udemy\\\\unreal engine developer c++\\\\BuildingEscape\\\\Source\\\\BuildingEscape\\\\BuildingEscape.cpp",
+        "command": "cl.exe @\"D:\\learning projects\\unreal\\udemy\\unreal engine developer c++\\BuildingEscape\\.vscode\\compileCommands_BuildingEscape\\BuildingEscape.210.rsp\"",
+        "directory": "C:\\Program Files\\Epic Games\\UE_4.27\\Engine\\Source"
+    },
+    {
+        "file": "D:\\\\learning projects\\\\unreal\\\\udemy\\\\unreal engine developer c++\\\\BuildingEscape\\\\Source\\\\BuildingEscape\\\\BuildingEscape.h",
+        "command": "cl.exe @\"D:\\learning projects\\unreal\\udemy\\unreal engine developer c++\\BuildingEscape\\.vscode\\compileCommands_BuildingEscape\\BuildingEscape.210.rsp\"",
+        "directory": "C:\\Program Files\\Epic Games\\UE_4.27\\Engine\\Source"
+    },
+    {
+        "file": "D:\\\\learning projects\\\\unreal\\\\udemy\\\\unreal engine developer c++\\\\BuildingEscape\\\\Source\\\\BuildingEscape\\\\BuildingEscapeGameModeBase.cpp",
+        "command": "cl.exe @\"D:\\learning projects\\unreal\\udemy\\unreal engine developer c++\\BuildingEscape\\.vscode\\compileCommands_BuildingEscape\\BuildingEscape.210.rsp\"",
+        "directory": "C:\\Program Files\\Epic Games\\UE_4.27\\Engine\\Source"
+    },
+    {
+        "file": "D:\\\\learning projects\\\\unreal\\\\udemy\\\\unreal engine developer c++\\\\BuildingEscape\\\\Source\\\\BuildingEscape\\\\BuildingEscapeGameModeBase.h",
+        "command": "cl.exe @\"D:\\learning projects\\unreal\\udemy\\unreal engine developer c++\\BuildingEscape\\.vscode\\compileCommands_BuildingEscape\\BuildingEscape.210.rsp\"",
+        "directory": "C:\\Program Files\\Epic Games\\UE_4.27\\Engine\\Source"
+    }
+]
