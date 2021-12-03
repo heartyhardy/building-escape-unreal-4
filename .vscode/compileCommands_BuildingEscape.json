@@ -33,5 +33,25 @@
         "file": "d:\\\\learning projects\\\\unreal\\\\udemy\\\\unreal engine developer c++\\\\BuildingEscape\\\\Source\\\\BuildingEscape\\\\WorldPosition.cpp",
         "command": "cl.exe @\"D:\\learning projects\\unreal\\udemy\\unreal engine developer c++\\BuildingEscape\\.vscode\\compileCommands_BuildingEscape\\BuildingEscape.210.rsp\"",
         "directory": "C:\\Program Files\\Epic Games\\UE_4.27\\Engine\\Source"
+    },
+    {
+        "file": "d:\\\\learning projects\\\\unreal\\\\udemy\\\\unreal engine developer c++\\\\BuildingEscape\\\\Source\\\\BuildingEscape\\\\OpenDoor.h",
+        "command": "cl.exe @\"D:\\learning projects\\unreal\\udemy\\unreal engine developer c++\\BuildingEscape\\.vscode\\compileCommands_BuildingEscape\\BuildingEscape.210.rsp\"",
+        "directory": "C:\\Program Files\\Epic Games\\UE_4.27\\Engine\\Source"
+    },
+    {
+        "file": "d:\\\\learning projects\\\\unreal\\\\udemy\\\\unreal engine developer c++\\\\BuildingEscape\\\\Source\\\\BuildingEscape\\\\OpenDoor.cpp",
+        "command": "cl.exe @\"D:\\learning projects\\unreal\\udemy\\unreal engine developer c++\\BuildingEscape\\.vscode\\compileCommands_BuildingEscape\\BuildingEscape.210.rsp\"",
+        "directory": "C:\\Program Files\\Epic Games\\UE_4.27\\Engine\\Source"
+    },
+    {
+        "file": "d:\\\\learning projects\\\\unreal\\\\udemy\\\\unreal engine developer c++\\\\BuildingEscape\\\\Source\\\\BuildingEscape\\\\LightLerp.h",
+        "command": "cl.exe @\"D:\\learning projects\\unreal\\udemy\\unreal engine developer c++\\BuildingEscape\\.vscode\\compileCommands_BuildingEscape\\BuildingEscape.210.rsp\"",
+        "directory": "C:\\Program Files\\Epic Games\\UE_4.27\\Engine\\Source"
+    },
+    {
+        "file": "d:\\\\learning projects\\\\unreal\\\\udemy\\\\unreal engine developer c++\\\\BuildingEscape\\\\Source\\\\BuildingEscape\\\\LightLerp.cpp",
+        "command": "cl.exe @\"D:\\learning projects\\unreal\\udemy\\unreal engine developer c++\\BuildingEscape\\.vscode\\compileCommands_BuildingEscape\\BuildingEscape.210.rsp\"",
+        "directory": "C:\\Program Files\\Epic Games\\UE_4.27\\Engine\\Source"
     }
 ]
