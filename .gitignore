@@ -41,6 +41,9 @@
 *.VC.db
 *.VC.opendb
 
+# Published
+Publish/*
+
 # Precompiled Assets
 SourceArt/**/*.png
 SourceArt/**/*.tga
