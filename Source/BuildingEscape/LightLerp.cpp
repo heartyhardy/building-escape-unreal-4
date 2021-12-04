@@ -3,6 +3,8 @@
 
 #include "LightLerp.h"
 #include "GameFramework/Actor.h"
+#include "GameFramework/GameMode.h"
+#include "Kismet/GameplayStatics.h"
 #include "Components/SpotLightComponent.h"
 
 // Sets default values for this component's properties
@@ -22,6 +24,15 @@ void ULightLerp::BeginPlay()
 	Super::BeginPlay();
 	// ...
 	TargetIntensity = 10.f;
+
+	AGameModeBase* GameMode  = GetWorld()->GetAuthGameMode();
+	TArray<AActor*> AllActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), GameMode->DefaultPawnClass, AllActors);
+	Player = AllActors.Pop();
+	//UE_LOG(LogTemp, Warning, TEXT("%i"), AllActors.Num());
+
+	USpotLightComponent* Light = Cast<USpotLightComponent>(GetOwner()->GetComponentByClass(USpotLightComponent::StaticClass()));
+	CurrentColor = Light->LightColor;
 }
 
 
@@ -31,13 +42,41 @@ void ULightLerp::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
-	USpotLightComponent* Light = Cast<USpotLightComponent>(GetOwner()->GetComponentByClass(USpotLightComponent::StaticClass()));
-	// float NewIntensity = FMath::Lerp(Light->Intensity, TargetIntensity, .001f);
 	
-	//Use Frame Rate independant versions
-	//float NewIntensity = FMath::FInterpConstantTo(Light->Intensity, TargetIntensity, DeltaTime, 1.f);
-	float NewIntensity = FMath::FInterpTo(Light->Intensity, TargetIntensity, DeltaTime, .5f);
 	
-	Light->SetIntensity(NewIntensity);
+	TurnOnLight(DeltaTime);
+
+	if(bAnimationDone && !bLightNotify){
+		USpotLightComponent* Light = Cast<USpotLightComponent>(GetOwner()->GetComponentByClass(USpotLightComponent::StaticClass()));
+		Light->SetLightColor(FLinearColor(0.f, 1.f, 0.f, 1.f));
+		bLightNotify = true;
+	}
+
+	if(bAnimationDone && LerpProgress < 1.f && Player && LightSwitch->IsOverlappingActor(Player)){
+		USpotLightComponent* Light = Cast<USpotLightComponent>(GetOwner()->GetComponentByClass(USpotLightComponent::StaticClass()));
+		FLinearColor LerpColor = FLinearColor::LerpUsingHSV(CurrentColor, TriggerColor, LerpProgress);
+		Light->SetLightColor(LerpColor.ToFColor(true));
+		LerpProgress += DeltaTime;
+	}
+
+	if(bAnimationDone && Player && LerpProgress >= 1.f && !LightSwitch->IsOverlappingActor(Player)){
+		LerpProgress = 0.f;
+		USpotLightComponent* Light = Cast<USpotLightComponent>(GetOwner()->GetComponentByClass(USpotLightComponent::StaticClass()));
+		Light->SetLightColor(CurrentColor);
+	}
 }
 
+
+void ULightLerp::TurnOnLight(float DeltaTime){
+	USpotLightComponent* Light = Cast<USpotLightComponent>(GetOwner()->GetComponentByClass(USpotLightComponent::StaticClass()));
+
+	if(!bAnimationDone){
+		float NewIntensity = FMath::FInterpTo(Light->Intensity, TargetIntensity, DeltaTime, 1.f);
+		
+		Light->SetIntensity(NewIntensity);
+	}
+
+	if(Light->Intensity >= TargetIntensity){
+		bAnimationDone = true;
+	}
+}
