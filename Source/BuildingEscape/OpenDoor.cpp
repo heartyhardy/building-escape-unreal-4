@@ -31,14 +31,14 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	FRotator DoorRotation = GetOwner()->GetActorRotation();
 
 	if(!Flipped){
-		TargetRotation = FMath::FInterpTo(DoorRotation.Yaw, -91.f, DeltaTime, .5f);
+		TargetRotation = FMath::FInterpTo(DoorRotation.Yaw, MaxRotation, DeltaTime, .5f);
 	}else if (Flipped){
-		TargetRotation = FMath::FInterpTo(DoorRotation.Yaw, 1.f, DeltaTime, .5f);
+		TargetRotation = FMath::FInterpTo(DoorRotation.Yaw, MinRotation, DeltaTime, .5f);
 	}
 
-	if(DoorRotation.Yaw < -90.f){
+	if(DoorRotation.Yaw < MaxRotationThreshold){
 		Flipped = true;
-	}else if(DoorRotation.Yaw > 0.f){
+	}else if(DoorRotation.Yaw > MinRotationThreshold){
 		Flipped = false;
 	}
 

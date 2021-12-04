@@ -19,12 +19,22 @@ public:
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-	float TargetRotation;
-	bool Flipped = false;
 
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+private:
+	UPROPERTY(EditAnywhere)
+	float MaxRotation;
+	UPROPERTY(EditAnywhere)
+	float MinRotation;
+	UPROPERTY(EditAnywhere)
+	float MaxRotationThreshold;
+	UPROPERTY(EditAnywhere)
+	float MinRotationThreshold;
+	
+	float TargetRotation;
+	bool Flipped = false;
 		
 };
