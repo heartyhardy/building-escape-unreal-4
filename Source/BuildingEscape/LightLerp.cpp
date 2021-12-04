@@ -4,8 +4,12 @@
 #include "LightLerp.h"
 #include "GameFramework/Actor.h"
 #include "GameFramework/GameMode.h"
+//Only if using UGameplayStatics::GetAllActorsOfClass
 #include "Kismet/GameplayStatics.h"
 #include "Components/SpotLightComponent.h"
+//To get Pawn through PlayerController
+#include "GameFramework/PlayerController.h"
+#include "Engine/World.h"
 
 // Sets default values for this component's properties
 ULightLerp::ULightLerp()
@@ -25,14 +29,20 @@ void ULightLerp::BeginPlay()
 	// ...
 	TargetIntensity = 10.f;
 
+	Player = GetWorld()->GetFirstPlayerController()->GetPawn();
+
+	USpotLightComponent* Light = Cast<USpotLightComponent>(GetOwner()->GetComponentByClass(USpotLightComponent::StaticClass()));
+	CurrentColor = Light->LightColor;
+	
+	/*
+		To get DefaultPawn through UGameplayStatics
+
 	AGameModeBase* GameMode  = GetWorld()->GetAuthGameMode();
 	TArray<AActor*> AllActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), GameMode->DefaultPawnClass, AllActors);
 	Player = AllActors.Pop();
 	//UE_LOG(LogTemp, Warning, TEXT("%i"), AllActors.Num());
-
-	USpotLightComponent* Light = Cast<USpotLightComponent>(GetOwner()->GetComponentByClass(USpotLightComponent::StaticClass()));
-	CurrentColor = Light->LightColor;
+	*/
 }
 
 

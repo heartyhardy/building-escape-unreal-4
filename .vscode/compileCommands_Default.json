@@ -53,5 +53,15 @@
         "file": "d:\\\\learning projects\\\\unreal\\\\udemy\\\\unreal engine developer c++\\\\BuildingEscape\\\\Source\\\\BuildingEscape\\\\LightLerp.cpp",
         "command": "cl.exe @\"D:\\learning projects\\unreal\\udemy\\unreal engine developer c++\\BuildingEscape\\.vscode\\compileCommands_Default\\BuildingEscape.210.rsp\"",
         "directory": "C:\\Program Files\\Epic Games\\UE_4.27\\Engine\\Source"
+    },
+    {
+        "file": "d:\\\\learning projects\\\\unreal\\\\udemy\\\\unreal engine developer c++\\\\BuildingEscape\\\\Source\\\\BuildingEscape\\\\ShowPressurePlate.h",
+        "command": "cl.exe @\"D:\\learning projects\\unreal\\udemy\\unreal engine developer c++\\BuildingEscape\\.vscode\\compileCommands_Default\\BuildingEscape.210.rsp\"",
+        "directory": "C:\\Program Files\\Epic Games\\UE_4.27\\Engine\\Source"
+    },
+    {
+        "file": "d:\\\\learning projects\\\\unreal\\\\udemy\\\\unreal engine developer c++\\\\BuildingEscape\\\\Source\\\\BuildingEscape\\\\ShowPressurePlate.cpp",
+        "command": "cl.exe @\"D:\\learning projects\\unreal\\udemy\\unreal engine developer c++\\BuildingEscape\\.vscode\\compileCommands_Default\\BuildingEscape.210.rsp\"",
+        "directory": "C:\\Program Files\\Epic Games\\UE_4.27\\Engine\\Source"
     }
 ]
