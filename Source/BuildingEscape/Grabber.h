@@ -4,19 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Engine/TriggerVolume.h"
-#include "Math/Color.h"
-#include "LightLerp.generated.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
+#include "Grabber.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class BUILDINGESCAPE_API ULightLerp : public UActorComponent
+class BUILDINGESCAPE_API UGrabber : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	ULightLerp();
+	UGrabber();
 
 protected:
 	// Called when the game starts
@@ -27,25 +26,24 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 private:
-	void TurnOnLight(float DeltaTime);
-	float TotalMassOfActors() const;
-
-	float TargetIntensity;
-	float LerpProgress = 0.f;
-	bool bAnimationDone = false;
-	bool bLightNotify = false;
-
-	FLinearColor CurrentColor;
-
+	bool bGrabbing = false;
+	
 	UPROPERTY(EditAnywhere)
-	float TriggerMass;
+	float Reach = 100.f;
+	
+	FVector PlayerLocation;
+	FVector LineOfReach;
+	FRotator PlayerRotation;
 
-	UPROPERTY(EditAnywhere)
-	ATriggerVolume* LightSwitch;
+	UPhysicsHandleComponent* PhysicsHandle = nullptr;
+	UInputComponent* InputComponent = nullptr;
 
-	UPROPERTY(EditAnywhere)
-	AActor* Player; 
+private:
+	void Grab();
+	void Release();
+	void FindPhysicsHandle();
+	void BindInputs();
 
-	UPROPERTY(EditAnywhere)
-	FLinearColor TriggerColor;
+	FHitResult GetFirstActorRayHit();
+	void DrawGrabReach();
 };

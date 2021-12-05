@@ -11,6 +11,8 @@
 #include "GameFramework/PlayerController.h"
 #include "Engine/World.h"
 
+#define OUT
+
 // Sets default values for this component's properties
 ULightLerp::ULightLerp()
 {
@@ -58,18 +60,18 @@ void ULightLerp::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 
 	if(bAnimationDone && !bLightNotify){
 		USpotLightComponent* Light = Cast<USpotLightComponent>(GetOwner()->GetComponentByClass(USpotLightComponent::StaticClass()));
-		Light->SetLightColor(FLinearColor(0.f, 1.f, 0.f, 1.f));
+		Light->SetLightColor(FLinearColor(0.f, 1.f, 1.f, 1.f));
 		bLightNotify = true;
 	}
 
-	if(bAnimationDone && LerpProgress < 1.f && Player && LightSwitch->IsOverlappingActor(Player)){
+	if(bAnimationDone && LerpProgress < 1.f && Player && TotalMassOfActors() >= TriggerMass){ //!LightSwitch->IsOverlappingActor(Player)
 		USpotLightComponent* Light = Cast<USpotLightComponent>(GetOwner()->GetComponentByClass(USpotLightComponent::StaticClass()));
 		FLinearColor LerpColor = FLinearColor::LerpUsingHSV(CurrentColor, TriggerColor, LerpProgress);
 		Light->SetLightColor(LerpColor.ToFColor(true));
 		LerpProgress += DeltaTime;
 	}
 
-	if(bAnimationDone && Player && LerpProgress >= 1.f && !LightSwitch->IsOverlappingActor(Player)){
+	if(bAnimationDone && Player && LerpProgress >= 1.f && TotalMassOfActors() < TriggerMass){ //!LightSwitch->IsOverlappingActor(Player)
 		LerpProgress = 0.f;
 		USpotLightComponent* Light = Cast<USpotLightComponent>(GetOwner()->GetComponentByClass(USpotLightComponent::StaticClass()));
 		Light->SetLightColor(CurrentColor);
@@ -89,4 +91,19 @@ void ULightLerp::TurnOnLight(float DeltaTime){
 	if(Light->Intensity >= TargetIntensity){
 		bAnimationDone = true;
 	}
+}
+
+float ULightLerp::TotalMassOfActors() const{
+	float TotalMass = 0.f;
+
+	TArray<AActor*> OverlappingActors;
+	LightSwitch->GetOverlappingActors(OUT OverlappingActors);
+
+	for (AActor* Actor : OverlappingActors)
+	{
+		UPrimitiveComponent* ActorComponent = Actor->FindComponentByClass<UPrimitiveComponent>();
+		TotalMass += ActorComponent->GetMass();
+	}
+	UE_LOG(LogTemp, Warning, TEXT("Total Mass: %f"), TotalMass);
+	return TotalMass;
 }

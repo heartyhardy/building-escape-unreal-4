@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+#include "ShowPressurePlate.h"
 #include "GameFramework/Actor.h"
 #include "Components/LightComponent.h"
-#include "ShowPressurePlate.h"
 
 // Sets default values for this component's properties
 UShowPressurePlate::UShowPressurePlate()
